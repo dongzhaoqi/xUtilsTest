@@ -19,6 +19,13 @@
         android:id="@+id/btn_database"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:text="从数据库中取数据"/>
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除数据库中数据"/>
 
 </LinearLayout>
