@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.xutilstest.CustomApplication;
 import com.xutilstest.R;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        Toast.makeText(MainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
     }
 
 
