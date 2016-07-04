@@ -365,4 +365,4 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> im
 ```
 
 **9.运行截图：**
-![image](https://raw.githubusercontent.com/dongzhaoqi/xUtilsTest/master/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630373034303233313331303838.gif)
+![image](https://github.com/dongzhaoqi/xUtilsTest/blob/master/1.gif)
