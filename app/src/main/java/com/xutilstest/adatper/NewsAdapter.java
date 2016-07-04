@@ -56,7 +56,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> im
         viewHolder.tv_description.setText(news.getDescription());
 
         //将数据保存在itemView的Tag中，以便点击时进行获取
-        viewHolder.itemView.setTag(i);
+        viewHolder.itemView.setTag(news.getNewsid());
         Picasso.with(mContext).load(news.getPicUrl()).into(viewHolder.iv_cover);
 
     }

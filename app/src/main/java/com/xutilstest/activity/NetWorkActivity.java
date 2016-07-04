@@ -1,6 +1,8 @@
 package com.xutilstest.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +44,7 @@ public class NetWorkActivity extends AppCompatActivity {
     private DbManager db;
     private NewsAdapter newsAdapter;
     private List<News> newsList;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +58,19 @@ public class NetWorkActivity extends AppCompatActivity {
 
     private void init() {
         db = x.getDb(CustomApplication.getInstance().getDaoConfig());
-
+        showProcessDialog();
         try {
             newsList = db.selector(News.class).findAll();
         } catch (DbException e) {
             e.printStackTrace();
         }
-        for (News news : newsList){
-            try {
-                db.delete(news);
-            } catch (DbException e) {
-                e.printStackTrace();
+        if(newsList != null) {
+            for (News news : newsList) {
+                try {
+                    db.delete(news);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
             }
         }
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, ConstantValue.url, null,
@@ -73,11 +78,13 @@ public class NetWorkActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("TAG", response.toString());
+                        dismissDialog();
                         getData(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dismissDialog();
             }
         }) {
 
@@ -114,5 +121,19 @@ public class NetWorkActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(newsAdapter);
+    }
+
+    public void showProcessDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("loading...");
+        builder.setCancelable(true);
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    public void dismissDialog(){
+        if(dialog.isShowing()){
+            dialog.dismiss();
+        }
     }
 }

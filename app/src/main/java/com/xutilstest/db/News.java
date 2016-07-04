@@ -3,11 +3,13 @@ package com.xutilstest.db;
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
+import java.io.Serializable;
+
 /**
  * Created by Dong on 7/3/2016.
  */
 @Table(name = "news")
-public class News {
+public class News implements Serializable{
 
     @Column(name = "newsid", isId = true, autoGen = true)
     private int newsid;
